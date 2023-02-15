@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Products {
+interface Product {
   id?: number;
   name?: string;
   ean?: string;
@@ -11,7 +11,7 @@ interface Products {
 }
 
 interface ProductsProps {
-  products: Products[];
+  products: Product[];
 }
 
 export default function Table({ products }: ProductsProps) {
@@ -20,7 +20,11 @@ export default function Table({ products }: ProductsProps) {
       <thead>
         <tr>
           {Object.keys(products[0]).map((key, index) =>
-            index > 0 ? <th key={index}>{key}</th> : ""
+            key === "id" || key === "active" ? (
+              ""
+            ) : (
+              <th key={index}>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
+            )
           )}
         </tr>
       </thead>
@@ -33,7 +37,6 @@ export default function Table({ products }: ProductsProps) {
               <td>{product.type}</td>
               <td>{product.weight}</td>
               <td>{product.color}</td>
-              <td>{product.active ? "+" : "-"}</td>
             </tr>
           );
         })}
