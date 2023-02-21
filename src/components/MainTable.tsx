@@ -14,7 +14,7 @@ interface ProductsProps {
   products: Product[];
 }
 
-export default function Table({ products }: ProductsProps) {
+export default function MainTable({ products }: ProductsProps) {
   return (
     <table>
       <thead>
@@ -29,7 +29,7 @@ export default function Table({ products }: ProductsProps) {
         </tr>
       </thead>
       <tbody>
-        {products.map((product) => {
+        {products.filter(product=>product.active).map((product) => {
           return (
             <tr key={product.id}>
               <td>{product.name}</td>

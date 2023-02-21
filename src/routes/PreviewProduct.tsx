@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function PreviewProduct() {
-  return (
-    <div>PreviewProduct</div>
-  )
+  return <div>PreviewProduct</div>;
 }

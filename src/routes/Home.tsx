@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/UI/Header";
-import List from "../components/List";
+
+import MainTable from "../components/MainTable";
+import { ProductsListContext } from "../context/ProductsListContext";
 export default function Home() {
+  const [products] = useContext(ProductsListContext);
   return (
     <>
       <Header />
-      <List />
+      <MainTable products={products} />
     </>
   );
 }
