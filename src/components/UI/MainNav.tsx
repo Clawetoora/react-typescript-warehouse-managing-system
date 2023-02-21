@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./MainNav.module.css";
+import styles from "./MainNav.module.scss";
 export default function Nav() {
   return (
     <nav className={styles.navigation}>
