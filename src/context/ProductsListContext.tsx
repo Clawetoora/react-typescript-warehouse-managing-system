@@ -28,6 +28,8 @@ const getFromStorage = () => {
         weight: 4500,
         color: "black",
         active: true,
+        quantity: 2,
+        price: 499,
       },
       {
         id: 2,
@@ -36,6 +38,8 @@ const getFromStorage = () => {
         type: "freestyle",
         weight: 7000,
         color: "white",
+        quantity: 2,
+        price: 499,
         active: true,
       },
       {
@@ -45,6 +49,8 @@ const getFromStorage = () => {
         type: "freeride",
         weight: 5200,
         color: "red",
+        quantity: 2,
+        price: 499,
         active: false,
       },
       {
@@ -54,6 +60,8 @@ const getFromStorage = () => {
         type: "powder",
         weight: 4990,
         color: "black",
+        quantity: 2,
+        price: 499,
         active: false,
       },
       {
@@ -63,6 +71,8 @@ const getFromStorage = () => {
         type: "splitboard",
         weight: 5000,
         color: "blue",
+        quantity: 2,
+        price: 499,
         active: false,
       },
       {
@@ -72,6 +82,8 @@ const getFromStorage = () => {
         type: "all mountain",
         weight: 3200,
         color: "white",
+        quantity: 2,
+        price: 499,
         active: true,
       },
       {
@@ -81,6 +93,8 @@ const getFromStorage = () => {
         type: "freestyle",
         weight: 4000,
         color: "black",
+        quantity: 2,
+        price: 499,
         active: false,
       },
       {
@@ -90,6 +104,8 @@ const getFromStorage = () => {
         type: "powder",
         weight: 4600,
         color: "orange",
+        quantity: 2,
+        price: 499,
         active: false,
       },
     ];

@@ -9,6 +9,8 @@ interface Product {
   weight?: number;
   color?: string;
   active?: boolean;
+  quantity?: number;
+  price?: number;
 }
 
 interface ProductsProps {
@@ -46,6 +48,8 @@ export default function MainTable({ products }: ProductsProps) {
                     kg
                   </td>
                   <td>{product.color}</td>
+                  <td>{product.quantity}</td>
+                  <td>${product.price}</td>
                 </tr>
               );
             })}
