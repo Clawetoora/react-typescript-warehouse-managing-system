@@ -54,7 +54,7 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                 <td>{product.weight}</td>
                 <td>{product.color}</td>
                 <td>
-                  <input type="checkbox" checked={product.active} />
+                  <input type="checkbox" readOnly checked={product.active} />
                 </td>
               </tr>
             );

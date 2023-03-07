@@ -1,5 +1,5 @@
 .navigation {
-  background-color: rgb(42, 102, 102);
+  background-color: #393e46;
   height: 100px;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
   width: 140px;
   text-decoration: none;
   color: white;
-  background-color: rgb(18, 31, 31);
+  background-color: #222831;
   padding: 10px 20px;
   border-radius: 100px;
   transition: all 0.3s;
@@ -28,4 +28,9 @@
     transform: translateY(-1px);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
   }
+}
+
+.button-selected {
+  @extend .button;
+  border: 1px solid white;
 }
