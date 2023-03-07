@@ -29,8 +29,21 @@
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
   }
 }
+@keyframes blinking {
+  0% {
+    border: 1px solid rgba(255, 255, 255, 0.267);
+  }
+  50% {
+    border: 1px solid white;
+  }
+  100% {
+    border: 1px solid rgba(255, 255, 255, 0.267);
+  }
+}
 
 .button-selected {
   @extend .button;
-  border: 1px solid white;
+
+  background-color: #3b495c;
+  animation: blinking 2s infinite;
 }

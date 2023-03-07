@@ -1,9 +1,26 @@
 import React from "react";
-import Nav from "./MainNav";
+import { NavLink } from "react-router-dom";
+import styles from "./MainNav.module.scss";
+// import CurrentPageContextProvider from "../../context/CurrentPageContext";
 export default function Header() {
   return (
-    <>
-      <Nav />
-    </>
+    <nav className={styles.navigation}>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? styles["button-selected"] : styles.button
+        }
+        to="/"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? styles["button-selected"] : styles.button
+        }
+        to="/products"
+      >
+        Manage products
+      </NavLink>
+    </nav>
   );
 }

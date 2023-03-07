@@ -9,7 +9,6 @@ export default function ProductList() {
   const [products, setProducts] = useContext(ProductsListContext);
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <ManageTable products={products} setProducts={setProducts} />
       </div>
