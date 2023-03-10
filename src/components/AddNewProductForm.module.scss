@@ -1,0 +1,24 @@
+.form {
+  background-color: #3b495c;
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  .input-container {
+    color: White;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    input {
+      padding-left: 5px;
+      height: 25px;
+      &::placeholder {
+        padding-left: 5px;
+        color: rgba(255, 255, 255, 0.438);
+      }
+    }
+  }
+}

@@ -41,9 +41,10 @@
   text-decoration: none;
   color: white;
   background-color: rgba(0, 128, 0, 0.9);
-  padding: 5px 20px;
+  padding: 10px 20px;
   transition: all 0.3s;
   text-align: center;
+  border: none;
   &:visited {
     color: white;
   }

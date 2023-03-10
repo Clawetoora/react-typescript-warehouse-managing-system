@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ManageTable.module.scss";
 import { NavLink } from "react-router-dom";
+import AddNewProductForm from "./AddNewProductForm";
 interface Product {
-  id?: number;
-  name?: string;
-  ean?: string;
-  type?: string;
-  weight?: number;
-  color?: string;
-  active?: boolean;
-  quantity?: number;
-  price?: number;
+  id: number;
+  name: string;
+  ean: number | null;
+  type: string | null;
+  weight: number | null;
+  color: string | null;
+  active: boolean;
+  quantity: number | null;
+  price: number | null;
 }
 
 interface ProductsProps {
@@ -19,17 +20,14 @@ interface ProductsProps {
 }
 
 export default function ManageTable({ products, setProducts }: ProductsProps) {
+  const [open, setOpen] = useState(false);
   return (
     <div className={styles.container}>
-      <NavLink className={styles.button} to="/products/create">
-        Add a new product
-      </NavLink>
+      <button className={styles.button}>Add a new product</button>
+      <AddNewProductForm products={products} setProducts={setProducts} />
       <table className={styles.table}>
         <thead>
           <tr>
-            {/* {Object.keys(products[0]).map((key, index) => (
-              <th key={index}>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
-            ))} */}
             <th>Id</th>
             <th>Product name</th>
             <th>EAN</th>
@@ -67,7 +65,7 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                 <td>{product.ean}</td>
                 <td>{product.type}</td>
                 <td>
-                  {product.weight !== undefined ? product.weight / 1000 : 0} kg
+                  {product.weight !== null ? product.weight / 1000 : 0} kg
                 </td>
                 <td>{product.color}</td>
                 <td>{product.quantity}</td>

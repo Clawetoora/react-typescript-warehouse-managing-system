@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Header from "../components/UI/Header";
+
 import ManageTable from "../components/ManageTable";
 import styles from "./ProductList.module.scss";
-import { NavLink } from "react-router-dom";
+
 import { ProductsListContext } from "../context/ProductsListContext";
 
 export default function ProductList() {
