@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./AddNewProductForm.module.scss";
 
@@ -31,6 +31,7 @@ export default function AddNewProductForm({
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const [touched, setTouched] = useState(false);
+  const [valid, setValid] = useState(true);
   const [newProduct, setNewProduct] = useState({
     id: 0,
     name: "",
@@ -42,6 +43,19 @@ export default function AddNewProductForm({
     quantity: 0,
     price: 0,
   });
+
+  useEffect(() => {
+    name.length > 0 &&
+    ean.toString().length == 10 &&
+    type.length > 0 &&
+    weight != 0 &&
+    color.length > 0 &&
+    quantity != 0 &&
+    price != 0
+      ? setValid(false)
+      : setValid(true);
+  }, [name, ean, type, weight, color, quantity, price]);
+
   return (
     <form action="" className={styles.form}>
       <div className={styles["input-container"]}>
@@ -68,9 +82,13 @@ export default function AddNewProductForm({
         />
         {touched ? (
           ean.toString().length > 0 && ean.toString().length < 10 ? (
-            <p>Code length: {ean.toString().length} must be 10 digits</p>
+            <p className={styles.validation}>
+              Code length: {ean.toString().length} must be 10 digits
+            </p>
           ) : ean.toString().length > 10 ? (
-            <p>Code length: {ean.toString().length} must be 10 digits</p>
+            <p className={styles.validation}>
+              Code length: {ean.toString().length} must be 10 digits
+            </p>
           ) : (
             ""
           )
@@ -132,6 +150,7 @@ export default function AddNewProductForm({
         />
       </div>
       <button
+        disabled={valid}
         onClick={(e) => {
           e.preventDefault();
           setNewProduct({
