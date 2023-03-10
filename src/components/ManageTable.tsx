@@ -23,8 +23,13 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
   const [open, setOpen] = useState(false);
   return (
     <div className={styles.container}>
-      <button className={styles.button}>Add a new product</button>
-      <AddNewProductForm products={products} setProducts={setProducts} />
+      <button className={styles.button} onClick={() => setOpen(!open)}>
+        Add a new product
+      </button>
+      <div className={open ? styles.show : styles.hide}>
+        <AddNewProductForm products={products} setProducts={setProducts} />
+      </div>
+
       <table className={styles.table}>
         <thead>
           <tr>
