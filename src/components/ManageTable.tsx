@@ -5,7 +5,7 @@ import AddNewProductForm from "./AddNewProductForm";
 interface Product {
   id: number;
   name: string;
-  ean: number;
+  ean: number | string;
   type: string;
   weight: number;
   color: string;
@@ -66,7 +66,7 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
               <tr
                 key={product.id}
                 className={product.active ? styles.active : styles.inactive}
-                onClick={() => setProductActive(product)}
+                // onClick={() => setProductActive(product)}
               >
                 <td>{product.id}</td>
                 <td>{product.name}</td>
@@ -84,6 +84,15 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                     onChange={() => setProductActive(product)}
                     checked={product.active}
                   />
+                </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      setProducts(products.filter((x) => x.id !== product.id));
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

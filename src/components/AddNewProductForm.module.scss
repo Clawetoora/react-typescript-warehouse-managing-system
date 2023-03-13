@@ -1,20 +1,35 @@
-.form {
-  margin-top: 20px;
+.container {
   background-color: #3b495c;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
   padding: 10px 20px;
   border-radius: 10px;
+  margin-bottom: 1rem;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  gap: 1rem;
+  row-gap: 2rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
   .input-container {
     color: White;
     display: flex;
     flex-direction: column;
     text-align: left;
+    width: 150px;
+    position: relative;
+
     input {
+      margin-top: 3px;
       padding-left: 5px;
       height: 25px;
+      border: none;
+      border-radius: 5px;
       &::placeholder {
         padding-left: 5px;
         color: rgba(255, 255, 255, 0.438);
@@ -24,8 +39,52 @@
 }
 
 .validation {
+  position: absolute;
   text-align: center;
   margin-top: 3px;
   font-size: 12px;
   color: red;
+  z-index: 1;
+  top: 50px;
+  &-hidden {
+    position: absolute;
+    top: 50px;
+    text-align: center;
+    margin-top: 3px;
+    font-size: 12px;
+    color: red;
+    z-index: 1;
+    opacity: 0;
+  }
+}
+
+.button {
+  text-decoration: none;
+  color: white;
+  background-color: rgba(0, 128, 0, 0.9);
+  padding: 10px 20px;
+  transition: all 0.3s;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  }
+  &:disabled {
+    opacity: 0.5;
+    background-color: rgba(0, 128, 0, 0.9);
+    transition: all 1s;
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
 }
