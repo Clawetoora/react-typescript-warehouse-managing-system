@@ -14,11 +14,10 @@
   border-radius: 10px;
   color: black;
   border-collapse: collapse;
+  overflow: hidden;
   tr {
     border-bottom: 1px solid black;
-    &:hover {
-      cursor: pointer;
-    }
+    height: 40px;
   }
 }
 
@@ -32,7 +31,7 @@
 .inactive {
   background-color: rgba(255, 0, 0, 0.5);
   &:hover {
-    background-color: rgba(255, 0, 0, 0.9);
+    background-color: rgba(255, 0, 0, 0.692);
   }
 }
 
@@ -72,7 +71,7 @@
   width: 100%;
   max-height: 800px;
   opacity: 100;
-  transition: all 0.5s;
+  transition: all 0.5s ease-in;
   z-index: 0;
 }
 
@@ -82,5 +81,34 @@
   }
   100% {
     opacity: 100%;
+  }
+}
+
+.button-manage {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.3s;
+  &.delete {
+    background-color: rgb(160, 39, 39);
+  }
+  &.view {
+    background-color: rgb(24, 82, 41);
+  }
+  &.edit {
+    background-color: rgb(32, 87, 100);
+  }
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.438);
   }
 }

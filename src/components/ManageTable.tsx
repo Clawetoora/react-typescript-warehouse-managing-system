@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ManageTable.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import AddNewProductForm from "./AddNewProductForm";
 interface Product {
   id: number;
@@ -87,12 +87,29 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                 </td>
                 <td>
                   <button
+                    className={`${styles["button-manage"]} ${styles.delete}`}
                     onClick={() => {
                       setProducts(products.filter((x) => x.id !== product.id));
                     }}
                   >
                     Delete
                   </button>
+                </td>
+                <td>
+                  <Link
+                    to={`/products/${product.id}`}
+                    className={`${styles["button-manage"]} ${styles.view}`}
+                  >
+                    View
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    to={`/products/${product.id}/edit`}
+                    className={`${styles["button-manage"]} ${styles.edit}`}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             );
