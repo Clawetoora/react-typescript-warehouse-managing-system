@@ -5,13 +5,13 @@ import styles from "./AddNewProductForm.module.scss";
 interface Product {
   id: number;
   name: string;
-  ean: number | null;
-  type: string | null;
-  weight: number | null;
-  color: string | null;
+  ean: number;
+  type: string;
+  weight: number;
+  color: string;
   active: boolean;
-  quantity: number | null;
-  price: number | null;
+  quantity: number;
+  price: number;
 }
 
 interface ProductsProps {
@@ -23,38 +23,36 @@ export default function AddNewProductForm({
   products,
   setProducts,
 }: ProductsProps) {
-  const [name, setName] = useState("");
-  const [ean, setEan] = useState(0);
-  const [type, setType] = useState("");
-  const [weight, setWeight] = useState(0);
-  const [color, setColor] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(0);
   const [touched, setTouched] = useState(false);
   const [valid, setValid] = useState(true);
-  const [newProduct, setNewProduct] = useState({
+  const [newProduct, setNewProduct] = useState<Product>({
     id: 0,
     name: "",
     ean: 0,
     type: "",
     weight: 0,
     color: "",
-    active: true,
+    active: false,
     quantity: 0,
     price: 0,
   });
 
   useEffect(() => {
-    name.length > 0 &&
-    ean.toString().length == 10 &&
-    type.length > 0 &&
-    weight != 0 &&
-    color.length > 0 &&
-    quantity != 0 &&
-    price != 0
+    newProduct.name.length > 0 &&
+    newProduct.ean.toString().length == 10 &&
+    newProduct.type.length > 0 &&
+    newProduct.weight != 0 &&
+    newProduct.color.length > 0 &&
+    newProduct.quantity != 0 &&
+    newProduct.price != 0
       ? setValid(false)
       : setValid(true);
-  }, [name, ean, type, weight, color, quantity, price]);
+    console.log(newProduct);
+  }, [newProduct]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("data", JSON.stringify(products));
+  // }, [products]);
 
   return (
     <form action="" className={styles.form}>
@@ -64,7 +62,9 @@ export default function AddNewProductForm({
           type="text"
           id="product-name"
           placeholder="ex. Snowboard"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            setNewProduct({ ...newProduct, name: e.target.value });
+          }}
           required
         />
       </div>
@@ -77,17 +77,13 @@ export default function AddNewProductForm({
           required
           onBlur={() => setTouched(true)}
           onChange={(e) => {
-            setEan(Number(e.target.value));
+            setNewProduct({ ...newProduct, ean: Number(e.target.value) });
           }}
         />
         {touched ? (
-          ean.toString().length > 0 && ean.toString().length < 10 ? (
+          newProduct?.ean.toString().length != 10 ? (
             <p className={styles.validation}>
-              Code length: {ean.toString().length} must be 10 digits
-            </p>
-          ) : ean.toString().length > 10 ? (
-            <p className={styles.validation}>
-              Code length: {ean.toString().length} must be 10 digits
+              Code length: {newProduct?.ean.toString().length} must be 10 digits
             </p>
           ) : (
             ""
@@ -102,7 +98,9 @@ export default function AddNewProductForm({
           type="text"
           id="product-type"
           placeholder="ex. Rocker"
-          onChange={(e) => setType(e.target.value)}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, type: e.target.value })
+          }
           required
         />
       </div>
@@ -112,7 +110,9 @@ export default function AddNewProductForm({
           type="number"
           id="product-weight"
           placeholder="ex. 3499"
-          onChange={(e) => setWeight(Number(e.target.value))}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, weight: Number(e.target.value) })
+          }
           required
           min={1}
         />
@@ -123,7 +123,9 @@ export default function AddNewProductForm({
           type="text"
           id="product-color"
           placeholder="ex. red"
-          onChange={(e) => setColor(e.target.value)}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, color: e.target.value })
+          }
           required
         />
       </div>
@@ -133,7 +135,9 @@ export default function AddNewProductForm({
           type="number"
           id="product-quantity"
           placeholder="ex. 2"
-          onChange={(e) => setQuantity(Number(e.target.value))}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, quantity: Number(e.target.value) })
+          }
           required
           min={1}
         />
@@ -144,7 +148,9 @@ export default function AddNewProductForm({
           type="number"
           id="product-price"
           placeholder="ex. 999"
-          onChange={(e) => setPrice(Number(e.target.value))}
+          onChange={(e) =>
+            setNewProduct({ ...newProduct, price: Number(e.target.value) })
+          }
           required
           min={0}
         />
@@ -153,17 +159,12 @@ export default function AddNewProductForm({
         disabled={valid}
         onClick={(e) => {
           e.preventDefault();
-          setNewProduct({
-            id: Math.random(),
-            name: name,
-            ean: ean,
-            type: type,
-            weight: weight,
-            color: color,
-            quantity: quantity,
-            price: price,
+          const updatedProduct = {
+            ...newProduct,
+            id: products[products.length - 1].id + 1,
             active: true,
-          });
+          };
+          setProducts((prevState) => [...prevState, updatedProduct]);
         }}
       >
         Next

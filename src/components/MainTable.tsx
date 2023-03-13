@@ -18,6 +18,7 @@ interface ProductsProps {
 }
 
 export default function MainTable({ products }: ProductsProps) {
+
   return (
     <div className={styles.container}>
       <table className={styles.table}>

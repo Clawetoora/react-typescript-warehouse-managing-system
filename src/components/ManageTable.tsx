@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ManageTable.module.scss";
 import { NavLink } from "react-router-dom";
 import AddNewProductForm from "./AddNewProductForm";
 interface Product {
   id: number;
   name: string;
-  ean: number | null;
-  type: string | null;
-  weight: number | null;
-  color: string | null;
+  ean: number;
+  type: string;
+  weight: number;
+  color: string;
   active: boolean;
-  quantity: number | null;
-  price: number | null;
+  quantity: number;
+  price: number;
 }
 
 interface ProductsProps {
@@ -21,6 +21,11 @@ interface ProductsProps {
 
 export default function ManageTable({ products, setProducts }: ProductsProps) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(products));
+  }, [products]);
+
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={() => setOpen(!open)}>
@@ -48,7 +53,6 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
           {products.map((product) => {
             const setProductActive = (product: Product) => {
               {
-                console.log(products);
                 const updatedProducts = products.map((p) => {
                   if (p.id === product.id) {
                     return { ...p, active: !p.active };
@@ -56,7 +60,6 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                   return p;
                 });
                 setProducts(updatedProducts);
-                localStorage.setItem("data", JSON.stringify(updatedProducts));
               }
             };
             return (
