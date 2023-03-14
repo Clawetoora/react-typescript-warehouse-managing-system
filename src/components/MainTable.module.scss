@@ -36,12 +36,19 @@
     }
     .stats-change {
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       .change {
         font-size: 13px;
         font-weight: 400;
+      }
+
+      .up {
+        color: rgb(125, 253, 125);
+      }
+      .down {
+        color: rgb(250, 40, 40);
       }
     }
   }

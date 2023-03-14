@@ -17,15 +17,28 @@ interface Product {
 interface ProductsProps {
   products: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  previousProducts: Product[];
+  setPreviousProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-export default function ManageTable({ products, setProducts }: ProductsProps) {
+export default function ManageTable({
+  products,
+  setProducts,
+  previousProducts,
+  setPreviousProducts,
+}: ProductsProps) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setPreviousProducts(products);
+    localStorage.setItem("prevData", JSON.stringify(previousProducts));
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(products));
   }, [products]);
 
+  // setPreviousProducts(products);
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={() => setOpen(!open)}>
@@ -59,6 +72,7 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                   }
                   return p;
                 });
+
                 setProducts(updatedProducts);
               }
             };
@@ -66,7 +80,6 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
               <tr
                 key={product.id}
                 className={product.active ? styles.active : styles.inactive}
-                // onClick={() => setProductActive(product)}
               >
                 <td>{product.id}</td>
                 <td>{product.name}</td>
@@ -81,7 +94,9 @@ export default function ManageTable({ products, setProducts }: ProductsProps) {
                 <td>
                   <input
                     type="checkbox"
-                    onChange={() => setProductActive(product)}
+                    onChange={() => {
+                      setProductActive(product);
+                    }}
                     checked={product.active}
                   />
                 </td>

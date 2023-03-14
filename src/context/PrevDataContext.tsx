@@ -100,32 +100,30 @@ const dummyData = [
     active: false,
   },
 ];
-const getFromStorage = () => {
+
+const getPrevData = () => {
   let data = [];
-  if (localStorage.getItem("data") === null) {
+  if (localStorage.getItem("prevdata") === null) {
     data = dummyData;
-    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("prevdata", JSON.stringify(data));
   }
-  if (localStorage.getItem("data") !== null) {
-    data = JSON.parse(localStorage.getItem("data")!);
+  if (localStorage.getItem("prevdata") !== null) {
+    data = JSON.parse(localStorage.getItem("prevdata")!);
   }
   return data;
 };
-
-export const ProductsListContext = createContext(getFromStorage());
-
-const ProductsListContextProvider = ({
+export const PrevDataContext = createContext(getPrevData());
+const PrevDataContextProvider = ({
   children,
 }: ProductsListContextProviderProps) => {
-  const [products, setProducts] = useState(getFromStorage());
-
+  const [previousProducts, setPreviousProducts] = useState(getPrevData());
   return (
     <div>
-      <ProductsListContext.Provider value={[products, setProducts]}>
+      <PrevDataContext.Provider value={[previousProducts, setPreviousProducts]}>
         {children}
-      </ProductsListContext.Provider>
+      </PrevDataContext.Provider>
     </div>
   );
 };
 
-export default ProductsListContextProvider;
+export default PrevDataContextProvider;

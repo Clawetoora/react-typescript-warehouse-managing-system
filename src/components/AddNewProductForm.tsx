@@ -49,10 +49,6 @@ export default function AddNewProductForm({
       : setValid(true);
   }, [newProduct]);
 
-  // useEffect(() => {
-  //   localStorage.setItem("data", JSON.stringify(products));
-  // }, [products]);
-
   return (
     <div className={styles.container}>
       <form action="" className={styles.form}>

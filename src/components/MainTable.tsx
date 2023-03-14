@@ -4,6 +4,7 @@ import pricetag from "../assets/dollar-square-svgrepo-com.svg";
 import weightofproducts from "../assets/weight-svgrepo-com.svg";
 import boxes from "../assets/boxes-svgrepo-com.svg";
 import { ProductsListContext } from "../context/ProductsListContext";
+import { PrevDataContext } from "../context/PrevDataContext";
 
 interface Product {
   id?: number;
@@ -23,12 +24,15 @@ interface Product {
 
 export default function MainTable() {
   const [products] = useContext(ProductsListContext);
+  const [previousProducts] = useContext(PrevDataContext);
+  // const previousProducts = JSON.parse(localStorage.getItem('prevdata')!);
 
   let weight = 0;
   let quantity = 0;
   let price = 0;
+  let lastWeight = 0;
+  let lastQuantity = 0;
   let lastPrice = 0;
-
   products
     .filter((product: Product) => product.active)
     .map((product: Product) => {
@@ -36,6 +40,17 @@ export default function MainTable() {
       product.weight ? (weight += product.weight) : 0;
       product.quantity ? (quantity += product.quantity) : 0;
     });
+
+  previousProducts
+    .filter((product: Product) => product.active)
+    .map((product: Product) => {
+      product.price ? (lastPrice += product.price) : 0;
+      product.weight ? (lastWeight += product.weight) : 0;
+      product.quantity ? (lastQuantity += product.quantity) : 0;
+    });
+
+  console.log(products.filter((product: Product) => product.active));
+  console.log(previousProducts.filter((product: Product) => product.active));
 
   return (
     <div className={styles.container}>
@@ -47,7 +62,15 @@ export default function MainTable() {
           </h4>
           <div className={styles["stats-change"]}>
             <p>${price}</p>
-            <p className={styles.change}>+{lastPrice}</p>
+            <p
+              className={`${styles.change} ${
+                price - lastPrice >= 0 ? styles.up : styles.down
+              }`}
+            >
+              Last change:
+              {price - lastPrice >= 0 ? " +$" : " -$"}
+              {Math.abs(price - lastPrice)}
+            </p>
           </div>
         </div>
         <div className={styles.stats}>
@@ -55,14 +78,38 @@ export default function MainTable() {
             <img className={styles.icon} src={weightofproducts} alt="" />
             Total weight
           </h4>
-          <p>{weight / 1000}kg</p>
+
+          <div className={styles["stats-change"]}>
+            <p>{weight / 1000}kg</p>
+            <p
+              className={`${styles.change} ${
+                price - lastPrice >= 0 ? styles.up : styles.down
+              }`}
+            >
+              Last change:
+              {weight - lastWeight >= 0 ? " +" : " -"}
+              {Math.abs(weight - lastWeight) / 1000}kg
+            </p>
+          </div>
         </div>
         <div className={styles.stats}>
           <h4>
             <img className={styles.icon} src={boxes} alt="" />
             Quantity
           </h4>
-          <p>{quantity}</p>
+
+          <div className={styles["stats-change"]}>
+            <p>{quantity} items</p>
+            <p
+              className={`${styles.change} ${
+                price - lastPrice >= 0 ? styles.up : styles.down
+              }`}
+            >
+              Last change:
+              {quantity - lastQuantity >= 0 ? " +" : " -"}
+              {Math.abs(quantity - lastQuantity)} items
+            </p>
+          </div>
         </div>
       </div>
       <table className={styles.table}>
@@ -94,13 +141,7 @@ export default function MainTable() {
                     {product.weight !== undefined ? product.weight / 1000 : 0}
                     kg
                   </td>
-                  <td>
-                    {product.color}
-                    {/* <div
-                      className={styles.color}
-                      style={{ backgroundColor: `${xcolor}` }}
-                    ></div> */}
-                  </td>
+                  <td>{product.color}</td>
                   <td>{product.quantity}</td>
                   <td>${product.price}</td>
                 </tr>
