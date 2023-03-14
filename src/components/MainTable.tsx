@@ -25,7 +25,6 @@ interface Product {
 export default function MainTable() {
   const [products] = useContext(ProductsListContext);
   const [previousProducts] = useContext(PrevDataContext);
-  // const previousProducts = JSON.parse(localStorage.getItem('prevdata')!);
 
   let weight = 0;
   let quantity = 0;

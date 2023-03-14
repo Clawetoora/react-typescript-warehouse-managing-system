@@ -31,7 +31,7 @@ export default function ManageTable({
 
   useEffect(() => {
     setPreviousProducts(products);
-    localStorage.setItem("prevData", JSON.stringify(previousProducts));
+    localStorage.setItem("prevdata", JSON.stringify(previousProducts));
   }, []);
 
   useEffect(() => {
