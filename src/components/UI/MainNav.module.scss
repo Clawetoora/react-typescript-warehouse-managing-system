@@ -1,5 +1,5 @@
 .navigation {
-  background-color: #393e46;
+  // background-color: #393e46;
   height: 100px;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
   width: 140px;
   text-decoration: none;
   color: white;
-  background-color: #222831;
+  background-color: #3e4753;
   padding: 10px 20px;
   border-radius: 100px;
   transition: all 0.3s;
@@ -44,6 +44,6 @@
 .button-selected {
   @extend .button;
 
-  background-color: #3b495c;
+  background-color: #161a20;
   animation: blinking 2s infinite;
 }

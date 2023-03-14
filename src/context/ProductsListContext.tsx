@@ -1,4 +1,10 @@
-import React, { useState, createContext, ReactNode, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 
 type ProductsListContextProviderProps = {
   children: ReactNode;
@@ -111,6 +117,7 @@ const ProductsListContextProvider = ({
   children,
 }: ProductsListContextProviderProps) => {
   const [products, setProducts] = useState(getFromStorage());
+
   return (
     <div>
       <ProductsListContext.Provider value={[products, setProducts]}>

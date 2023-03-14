@@ -47,7 +47,6 @@ export default function AddNewProductForm({
     newProduct.price != 0
       ? setValid(false)
       : setValid(true);
-    console.log(newProduct);
   }, [newProduct]);
 
   // useEffect(() => {

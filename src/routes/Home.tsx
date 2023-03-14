@@ -7,8 +7,7 @@ export default function Home() {
   const [products] = useContext(ProductsListContext);
   return (
     <>
-      <h1>Available products</h1>
-      <MainTable products={products} />
+      <MainTable />
     </>
   );
 }
