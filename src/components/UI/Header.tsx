@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./MainNav.module.scss";
-// import CurrentPageContextProvider from "../../context/CurrentPageContext";
+
 export default function Header() {
   return (
     <nav className={styles.navigation}>

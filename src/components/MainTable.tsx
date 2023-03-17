@@ -24,7 +24,11 @@ interface Product {
 
 export default function MainTable() {
   const [products] = useContext(ProductsListContext);
-  const [previousProducts] = useContext(PrevDataContext);
+  const [previousProducts, setPreviousProducts] = useContext(PrevDataContext);
+  
+  useEffect(() => {
+    localStorage.setItem("prevdata", JSON.stringify(previousProducts));
+  }, []);
 
   let weight = 0;
   let quantity = 0;
@@ -47,9 +51,6 @@ export default function MainTable() {
       product.weight ? (lastWeight += product.weight) : 0;
       product.quantity ? (lastQuantity += product.quantity) : 0;
     });
-
-  console.log(products.filter((product: Product) => product.active));
-  console.log(previousProducts.filter((product: Product) => product.active));
 
   return (
     <div className={styles.container}>

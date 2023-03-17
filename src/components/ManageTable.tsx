@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ManageTable.module.scss";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddNewProductForm from "./AddNewProductForm";
+
 interface Product {
   id: number;
   name: string;
@@ -28,17 +29,17 @@ export default function ManageTable({
   setPreviousProducts,
 }: ProductsProps) {
   const [open, setOpen] = useState(false);
+  const [prevProducts, setPrevProducts] = useState(products);
 
+  // state to save prevState so if no changes were made it wouldnt change previousProducts state;
   useEffect(() => {
-    setPreviousProducts(products);
-    localStorage.setItem("prevdata", JSON.stringify(previousProducts));
+    setPrevProducts(products);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(products));
   }, [products]);
 
-  // setPreviousProducts(products);
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={() => setOpen(!open)}>
@@ -72,7 +73,7 @@ export default function ManageTable({
                   }
                   return p;
                 });
-
+                setPreviousProducts(prevProducts);
                 setProducts(updatedProducts);
               }
             };
