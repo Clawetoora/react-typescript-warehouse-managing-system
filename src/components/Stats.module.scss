@@ -1,11 +1,3 @@
-.container {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  flex-direction: column;
-}
-
 .stats-container {
   display: grid;
   width: 60%;
@@ -54,22 +46,8 @@
   }
 }
 
-
-
-.table {
-  margin: 0 auto;
-  width: 100%;
-  background-color: #202525;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.137);
-  border-collapse: collapse;
-
-  tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.137);
-    height: 40px;
-  }
-  .color {
-    width: 20px;
-    height: 20px;
-  }
+.icon {
+  width: 25px;
+  margin-right: 5px;
+  fill: white;
 }
