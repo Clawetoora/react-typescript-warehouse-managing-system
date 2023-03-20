@@ -5,6 +5,8 @@ import styles from "./Stats.module.scss";
 import pricetag from "../assets/dollar-square-svgrepo-com.svg";
 import weightofproducts from "../assets/weight-svgrepo-com.svg";
 import boxes from "../assets/boxes-svgrepo-com.svg";
+import arrowDown from "../assets/pointer-down-svgrepo-com.svg";
+import arrowUp from "../assets/pointer-up-svgrepo-com.svg";
 
 interface Product {
   id?: number;
@@ -109,6 +111,11 @@ function Stats() {
             <br />
             {price - lastPrice >= 0 ? " +" : " -"}
             {priceCount}%
+            <img
+              className={styles.arrow}
+              src={price - lastPrice >= 0 ? arrowUp : arrowDown}
+              alt=""
+            />
           </p>
         </div>
       </div>
@@ -131,6 +138,11 @@ function Stats() {
             <br />
             {weight - lastWeight >= 0 ? " +" : " -"}
             {weightCount}%
+            <img
+              className={styles.arrow}
+              src={weight - lastWeight >= 0 ? arrowUp : arrowDown}
+              alt=""
+            />
           </p>
         </div>
       </div>
@@ -153,6 +165,11 @@ function Stats() {
             <br />
             {quantity - lastQuantity >= 0 ? " +" : " -"}
             {quantityCount}%
+            <img
+              className={styles.arrow}
+              src={quantity - lastQuantity >= 0 ? arrowUp : arrowDown}
+              alt=""
+            />
           </p>
         </div>
       </div>

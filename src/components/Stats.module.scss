@@ -39,10 +39,10 @@
       }
 
       .up {
-        color: rgb(125, 253, 125);
+        color: #7dfd7d;
       }
       .down {
-        color: rgb(250, 40, 40);
+        color: #fa2828;
       }
     }
   }
@@ -52,4 +52,22 @@
   width: 25px;
   margin-right: 5px;
   fill: white;
+}
+
+.arrow {
+  width: 15px;
+  margin-left: 2px;
+  animation: moveArrow 1s infinite;
+}
+
+@keyframes moveArrow {
+  0% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
 }
