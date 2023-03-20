@@ -27,18 +27,18 @@ export default function PreviewProduct() {
         .filter((product: Product) => product.id === Number(params.id))
         .map((product: Product) => {
           return (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.ean}</td>
-              <td>{product.type}</td>
-              <td>
+            <div key={product.id}>
+              <p>{product.name}</p>
+              <p>{product.ean}</p>
+              <p>{product.type}</p>
+              <p>
                 {product.weight !== undefined ? product.weight / 1000 : 0}
                 kg
-              </td>
-              <td>{product.color}</td>
-              <td>{product.quantity}</td>
-              <td>${product.price}</td>
-            </tr>
+              </p>
+              <p>{product.color}</p>
+              <p>{product.quantity}</p>
+              <p>${product.price}</p>
+            </div>
           );
         })}
     </>

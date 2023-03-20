@@ -20,7 +20,6 @@ export default function MainTable() {
 
   return (
     <div className={styles.container}>
-      <Stats />
       <table className={styles.table}>
         <thead>
           <tr>
@@ -39,7 +38,6 @@ export default function MainTable() {
           {products
             .filter((product: Product) => product.active)
             .map((product: Product) => {
-
               return (
                 <tr key={product.id}>
                   <td>{product.name}</td>

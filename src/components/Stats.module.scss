@@ -1,15 +1,17 @@
 .stats-container {
-  display: grid;
-  width: 60%;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 1rem;
   .stats {
-    background-color: #202525;
+    background-color: #1d2228;
     border: 1px solid rgba(255, 255, 255, 0.137);
     border-radius: 5px;
     padding: 15px 20px;
     text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     h4 {
       display: flex;
       align-items: center;
@@ -28,12 +30,12 @@
     }
     .stats-change {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      margin-left: auto;
       .change {
         font-size: 13px;
         font-weight: 400;
+        justify-self: end;
       }
 
       .up {

@@ -1,0 +1,34 @@
+.hero {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 10px;
+
+  h1 {
+    font-size: 25px;
+    text-align: left;
+  }
+  &-aside {
+    background: linear-gradient(to right, #07090d, #11161f);
+    border-radius: 10px;
+    padding: 1rem;
+    h5 {
+      text-align: left;
+      margin-bottom: 10px;
+      color: #888;
+      font-size: 14px;
+    }
+  }
+}
+
+.heroImg {
+  opacity: 40%;
+  height: 100%;
+  img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+  }
+}
