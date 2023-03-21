@@ -2,15 +2,25 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  // background: linear-gradient(to right, #07090d, #11161f);
   margin: 0 auto;
   padding: 1rem 0;
   flex-direction: column;
+
+  h2 {
+    margin-left: 10%;
+    text-align: left;
+    color: #6d6d6d;
+    font-weight: 500;
+  }
+  div {
+    overflow-x: auto;
+    min-width: 100%;
+  }
 }
 
 .table {
-  margin: 0 auto;
-  width: 90%;
+  width: 100%;
+
   background-color: #181b20;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.137);
@@ -19,6 +29,14 @@
   tr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.137);
     height: 40px;
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #bc9f6557;
+      }
+    }
   }
   .color {
     width: 20px;

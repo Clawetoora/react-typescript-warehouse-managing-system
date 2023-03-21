@@ -12,6 +12,7 @@ interface Product {
   active: boolean;
   quantity: number;
   price: number;
+  img: string;
 }
 
 interface ProductsProps {
@@ -35,6 +36,7 @@ export default function AddNewProductForm({
     active: false,
     quantity: 0,
     price: 0,
+    img: "",
   });
 
   useEffect(() => {
@@ -64,6 +66,7 @@ export default function AddNewProductForm({
             required
           />
         </div>
+
         <div className={styles["input-container"]}>
           <label htmlFor="product-ean">EAN</label>
           <input
@@ -153,6 +156,17 @@ export default function AddNewProductForm({
             }
             required
             min={0}
+          />
+        </div>
+        <div className={styles["input-container"]}>
+          <label htmlFor="product-img">Product image url</label>
+          <input
+            type="text"
+            id="product-img"
+            placeholder="https://......"
+            onChange={(e) => {
+              setNewProduct({ ...newProduct, img: e.target.value });
+            }}
           />
         </div>
       </form>

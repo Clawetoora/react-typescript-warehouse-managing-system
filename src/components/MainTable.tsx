@@ -20,41 +20,44 @@ export default function MainTable() {
 
   return (
     <div className={styles.container}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            {Object.keys(products[0]).map((key, index) =>
-              key === "id" || key === "active" ? (
-                ""
-              ) : (
-                <th key={index}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </th>
-              )
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {products
-            .filter((product: Product) => product.active)
-            .map((product: Product) => {
-              return (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>{product.ean}</td>
-                  <td>{product.type}</td>
-                  <td>
-                    {product.weight !== undefined ? product.weight / 1000 : 0}
-                    kg
-                  </td>
-                  <td>{product.color}</td>
-                  <td>{product.quantity}</td>
-                  <td>${product.price}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+      <h2>Only active items shown below</h2>
+      <div>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              {Object.keys(products[0]).map((key, index) =>
+                key === "id" || key === "active" || key === "img" ? (
+                  ""
+                ) : (
+                  <th key={index}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </th>
+                )
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {products
+              .filter((product: Product) => product.active)
+              .map((product: Product) => {
+                return (
+                  <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.ean}</td>
+                    <td>{product.type}</td>
+                    <td>
+                      {product.weight !== undefined ? product.weight / 1000 : 0}
+                      kg
+                    </td>
+                    <td>{product.color}</td>
+                    <td>{product.quantity}</td>
+                    <td>${product.price}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
