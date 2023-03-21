@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 
 import React, { useContext, useEffect, useState } from "react";
 import { ProductsListContext } from "../context/ProductsListContext";
-import nophoto from "../assets/nophoto.jpg";
+
+import ProductCard from "../components/UI/ProductCard";
 
 interface Product {
   id?: number;
@@ -39,7 +40,6 @@ export default function PreviewProduct() {
 
   return (
     <>
-      <h1>Product</h1>
       {loading ? (
         <p>LOADING...</p>
       ) : (
@@ -47,31 +47,11 @@ export default function PreviewProduct() {
           .filter((product: Product) => product.id === Number(params.id))
           .map((product: Product) => {
             return (
-              <div key={product.id}>
-                <p>Product name: {product.name}</p>
-                <p>
-                  Product ean: {product.ean}
-                  <img src={barCode} alt="" />
-                </p>
-                <p>{product.type}</p>
-                <p>
-                  {product.weight !== undefined ? product.weight / 1000 : 0}
-                  kg
-                </p>
-                <p>{product.color}</p>
-                <p>{product.quantity}</p>
-                <p>${product.price}</p>
-                <img
-                  width="200"
-                  height="200"
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null;
-                    currentTarget.src = nophoto;
-                  }}
-                  src={product.img}
-                  alt=""
-                />
-              </div>
+              <ProductCard
+                key={product.id}
+                product={product}
+                barCode={barCode}
+              />
             );
           })
       )}

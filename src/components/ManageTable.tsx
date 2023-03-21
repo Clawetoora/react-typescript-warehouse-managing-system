@@ -26,7 +26,7 @@ interface ProductsProps {
 export default function ManageTable({
   products,
   setProducts,
-  previousProducts,
+
   setPreviousProducts,
 }: ProductsProps) {
   const [open, setOpen] = useState(false);
@@ -106,6 +106,7 @@ export default function ManageTable({
                     <button
                       className={`${styles["button-manage"]} ${styles.delete}`}
                       onClick={() => {
+                        setPreviousProducts(prevProducts);
                         setProducts(
                           products.filter((x) => x.id !== product.id)
                         );
