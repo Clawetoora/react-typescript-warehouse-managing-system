@@ -20,7 +20,7 @@ const dummyData = [
   {
     id: 2,
     name: "Bataleon",
-    ean: "01231237222",
+    ean: "01231237922",
     type: "freestyle",
     weight: 7000,
     color: "white",

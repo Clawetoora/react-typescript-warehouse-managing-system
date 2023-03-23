@@ -45,7 +45,7 @@ export default function AddNewProductForm({
     newProduct.type.length > 0 &&
     newProduct.weight != 0 &&
     newProduct.color.length > 0 &&
-    newProduct.quantity != 0 &&
+    newProduct.quantity >= 0 &&
     newProduct.price != 0
       ? setValid(false)
       : setValid(true);

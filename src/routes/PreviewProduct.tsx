@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-
-import React, { useContext, useEffect, useState } from "react";
+import PuffLoader from "react-spinners/PuffLoader";
+import React, { useContext, useEffect, useState, CSSProperties } from "react";
 import { ProductsListContext } from "../context/ProductsListContext";
 
 import ProductCard from "../components/UI/ProductCard";
@@ -20,7 +20,7 @@ interface Product {
 export default function PreviewProduct() {
   const params = useParams();
   const [products] = useContext(ProductsListContext);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [barCode, setBarCode] = useState("");
 
   const API_URL = products
@@ -31,6 +31,7 @@ export default function PreviewProduct() {
 
   useEffect(() => {
     const getbarCode = async () => {
+      setLoading(true);
       const data = await fetch(API_URL);
       setBarCode(data.url);
       setLoading(false);
@@ -38,10 +39,25 @@ export default function PreviewProduct() {
     getbarCode();
   }, []);
 
+  // spinner styling
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+    marginTop: "3rem",
+  };
+
   return (
     <>
       {loading ? (
-        <p>LOADING...</p>
+        <PuffLoader
+          color={"white"}
+          loading={loading}
+          cssOverride={override}
+          size={200}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       ) : (
         products
           .filter((product: Product) => product.id === Number(params.id))

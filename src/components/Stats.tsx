@@ -75,17 +75,19 @@ function Stats() {
               price - lastPrice >= 0 ? styles.up : styles.down
             }`}
           >
+            <div className={styles.percent}>
+              {price - lastPrice >= 0 ? " +" : " -"}
+              <Count number={endPrice} duration={2} />
+              <img
+                className={styles.arrow}
+                src={price - lastPrice >= 0 ? arrowUp : arrowDown}
+                alt=""
+              />
+            </div>
             Last change:
             {price - lastPrice >= 0 ? " +$" : " -$"}
             {Math.abs(price - lastPrice)}
             <br />
-            {price - lastPrice >= 0 ? " +" : " -"}
-            <Count number={endPrice} duration={2} />
-            <img
-              className={styles.arrow}
-              src={price - lastPrice >= 0 ? arrowUp : arrowDown}
-              alt=""
-            />
           </p>
         </div>
       </div>
@@ -102,17 +104,19 @@ function Stats() {
               weight - lastWeight >= 0 ? styles.up : styles.down
             }`}
           >
+            <div className={styles.percent}>
+              {weight - lastWeight >= 0 ? " +" : " -"}
+              <Count number={endWeight} duration={2} />
+              <img
+                className={styles.arrow}
+                src={weight - lastWeight >= 0 ? arrowUp : arrowDown}
+                alt=""
+              />
+            </div>
             Last change:
             {weight - lastWeight >= 0 ? " +" : " -"}
             {Math.abs(weight - lastWeight) / 1000}kg
             <br />
-            {weight - lastWeight >= 0 ? " +" : " -"}
-            <Count number={endWeight} duration={2} />
-            <img
-              className={styles.arrow}
-              src={weight - lastWeight >= 0 ? arrowUp : arrowDown}
-              alt=""
-            />
           </p>
         </div>
       </div>
@@ -129,17 +133,19 @@ function Stats() {
               quantity - lastQuantity >= 0 ? styles.up : styles.down
             }`}
           >
+            <div className={styles.percent}>
+              {quantity - lastQuantity >= 0 ? " +" : " -"}
+              <Count number={endQuantity} duration={2} />
+              <img
+                className={styles.arrow}
+                src={quantity - lastQuantity >= 0 ? arrowUp : arrowDown}
+                alt=""
+              />
+            </div>
             Last change:
             {quantity - lastQuantity >= 0 ? " +" : " -"}
             {Math.abs(quantity - lastQuantity)} items
             <br />
-            {quantity - lastQuantity >= 0 ? " +" : " -"}
-            <Count number={endQuantity} duration={2} />
-            <img
-              className={styles.arrow}
-              src={quantity - lastQuantity >= 0 ? arrowUp : arrowDown}
-              alt=""
-            />
           </p>
         </div>
       </div>

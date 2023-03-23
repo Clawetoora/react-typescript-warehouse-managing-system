@@ -44,6 +44,9 @@
     p {
       padding: 5px;
       font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .icon {
       width: 25px;
@@ -90,6 +93,9 @@
     .price {
       font-size: 30px;
       align-self: flex-end;
+    }
+    .ean {
+      display: block;
     }
   }
 }

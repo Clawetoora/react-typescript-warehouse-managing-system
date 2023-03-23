@@ -42,17 +42,17 @@ function ProductCard({ product, barCode }: cardProps) {
 
         <p className={styles.type}>Type: {product.type}</p>
         <p className={styles.weight}>
+          <img className={styles.icon} src={weight} alt="" />
           Weight: {product.weight !== undefined ? product.weight / 1000 : 0}
           kg
-          <img className={styles.icon} src={weight} alt="" />
         </p>
         <p className={styles.color}>
-          Color: {product.color}
           <img className={styles.icon} src={color} alt="" />
+          Color: {product.color}
         </p>
         <p className={styles.quantity}>
-          Items in storage: {product.quantity}
           <img className={styles.icon} src={box} alt="" />
+          Items in storage: {product.quantity}
         </p>
         <p className={styles.price}>Price: ${product.price}</p>
         <p className={styles.ean}>
