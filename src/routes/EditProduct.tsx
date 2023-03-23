@@ -7,7 +7,7 @@ import ProductCardEditable from "../components/UI/ProductCardEditable";
 interface Product {
   id: number;
   name: string;
-  ean: string;
+  ean: number;
   type: string;
   weight: number;
   color: string;

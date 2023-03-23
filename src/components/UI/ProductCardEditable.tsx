@@ -6,11 +6,12 @@ import box from "../../assets/box-svgrepo-com.svg";
 import weight from "../../assets/weight-svgrepo-com.svg";
 import color from "../../assets/color-palette-svgrepo-com.svg";
 import edit from "../../assets/edit-svgrepo-com.svg";
+import editblack from "../../assets/editblack-svgrepo-com.svg";
 
 interface Product {
   id: number;
   name: string;
-  ean: string;
+  ean: number;
   type: string;
   weight: number;
   color: string;
@@ -24,7 +25,6 @@ interface cardProps {
   barCode: string;
 }
 function ProductCard({ product, barCode }: cardProps) {
-  const [editable, setEditable] = useState(true);
   const [editedProduct, setEditedProduct] = useState<Product>({
     id: product.id,
     name: product.name,
@@ -62,6 +62,7 @@ function ProductCard({ product, barCode }: cardProps) {
         <div className={styles.info}>
           <p className={styles.name}>
             <input
+              id="name"
               className={classes.name}
               type="text"
               onChange={(e) => {
@@ -74,9 +75,12 @@ function ProductCard({ product, barCode }: cardProps) {
               defaultValue={product.name}
               placeholder="Name"
             />
+            <label htmlFor="name">
+              <img src={editblack} className={classes["edit-icon"]} alt="" />
+            </label>
           </p>
           <p className={styles.type}>
-            Type:{" "}
+            Type:
             <input
               id="type"
               type="text"
@@ -193,14 +197,15 @@ function ProductCard({ product, barCode }: cardProps) {
               onChange={(e) => {
                 setEditedProduct({
                   ...editedProduct,
-                  ean: e.target.value,
+                  ean: Number(e.target.value),
                 });
               }}
               style={{
-                maxWidth: `${editedProduct.ean.length}ch`,
+                minWidth: `50px`,
+                maxWidth: `${editedProduct.ean.toString().length}ch`,
               }}
               defaultValue={product.ean}
-              placeholder={product.ean}
+              placeholder={product.ean.toString()}
             />
             <label htmlFor="ean">
               <img src={edit} className={classes["edit-icon"]} alt="" />
