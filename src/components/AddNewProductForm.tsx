@@ -159,7 +159,11 @@ export default function AddNewProductForm({
           />
         </div>
         <div className={styles["input-container"]}>
-          <label htmlFor="product-img">Product image url</label>
+          <label htmlFor="product-img">
+            Product image url
+            <br />
+            <small>*Optional</small>
+          </label>
           <input
             type="text"
             id="product-img"
@@ -183,7 +187,7 @@ export default function AddNewProductForm({
           setProducts((prevState) => [...prevState, updatedProduct]);
         }}
       >
-        Next
+        Add new item
       </button>
     </div>
   );

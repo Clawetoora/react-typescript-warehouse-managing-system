@@ -19,7 +19,7 @@ interface Product {
 
 export default function EditProduct() {
   const params = useParams();
-  const [products] = useContext(ProductsListContext);
+  const [products, setProducts] = useContext(ProductsListContext);
   const [loading, setLoading] = useState(false);
   const [barCode, setBarCode] = useState("");
 
@@ -66,6 +66,7 @@ export default function EditProduct() {
                 key={product.id}
                 product={product}
                 barCode={barCode}
+                setProducts={setProducts}
               />
             );
           })

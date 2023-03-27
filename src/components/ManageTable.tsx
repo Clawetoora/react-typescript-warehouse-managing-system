@@ -65,75 +65,77 @@ export default function ManageTable({
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => {
-              const setProductActive = (product: Product) => {
-                {
-                  const updatedProducts = products.map((p) => {
-                    if (p.id === product.id) {
-                      return { ...p, active: !p.active };
-                    }
-                    return p;
-                  });
-                  setPreviousProducts(prevProducts);
-                  setProducts(updatedProducts);
-                }
-              };
-              return (
-                <tr
-                  key={product.id}
-                  className={product.active ? styles.active : styles.inactive}
-                >
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.ean}</td>
-                  <td>{product.type}</td>
-                  <td>
-                    {product.weight !== null ? product.weight / 1000 : 0} kg
-                  </td>
-                  <td>{product.color}</td>
-                  <td>{product.quantity}</td>
-                  <td>${product.price}</td>
-                  <td>
-                    <input
-                      type="checkbox"
-                      onChange={() => {
-                        setProductActive(product);
-                      }}
-                      checked={product.active}
-                    />
-                  </td>
-                  <td>
-                    <button
-                      className={`${styles["button-manage"]} ${styles.delete}`}
-                      onClick={() => {
-                        setPreviousProducts(prevProducts);
-                        setProducts(
-                          products.filter((x) => x.id !== product.id)
-                        );
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/products/${product.id}`}
-                      className={`${styles["button-manage"]} ${styles.view}`}
-                    >
-                      View
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/products/${product.id}/edit`}
-                      className={`${styles["button-manage"]} ${styles.edit}`}
-                    >
-                      Edit
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
+            {products
+              .sort((a: Product, b: Product) => a.id - b.id)
+              .map((product) => {
+                const setProductActive = (product: Product) => {
+                  {
+                    const updatedProducts = products.map((p) => {
+                      if (p.id === product.id) {
+                        return { ...p, active: !p.active };
+                      }
+                      return p;
+                    });
+                    setPreviousProducts(prevProducts);
+                    setProducts(updatedProducts);
+                  }
+                };
+                return (
+                  <tr
+                    key={product.id}
+                    className={product.active ? styles.active : styles.inactive}
+                  >
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>{product.ean}</td>
+                    <td>{product.type}</td>
+                    <td>
+                      {product.weight !== null ? product.weight / 1000 : 0} kg
+                    </td>
+                    <td>{product.color}</td>
+                    <td>{product.quantity}</td>
+                    <td>${product.price}</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        onChange={() => {
+                          setProductActive(product);
+                        }}
+                        checked={product.active}
+                      />
+                    </td>
+                    <td>
+                      <button
+                        className={`${styles["button-manage"]} ${styles.delete}`}
+                        onClick={() => {
+                          setPreviousProducts(prevProducts);
+                          setProducts(
+                            products.filter((x) => x.id !== product.id)
+                          );
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/products/${product.id}`}
+                        className={`${styles["button-manage"]} ${styles.view}`}
+                      >
+                        View
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/products/${product.id}/edit`}
+                        className={`${styles["button-manage"]} ${styles.edit}`}
+                      >
+                        Edit
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

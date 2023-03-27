@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import nophoto from "../../assets/nophoto.jpg";
 import classes from "./ProductCardEditable.module.scss";
 import styles from "./ProductCard.module.scss";
@@ -23,8 +23,9 @@ interface Product {
 interface cardProps {
   product: Product;
   barCode: string;
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
-function ProductCard({ product, barCode }: cardProps) {
+function ProductCard({ product, barCode, setProducts }: cardProps) {
   const [editedProduct, setEditedProduct] = useState<Product>({
     id: product.id,
     name: product.name,
@@ -38,6 +39,13 @@ function ProductCard({ product, barCode }: cardProps) {
     img: product.img,
   });
 
+  const checkKeyPress = (event: any) => {
+    const keyCode = event.keyCode || event.which;
+    const keyValue = String.fromCharCode(keyCode);
+    if (!/^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/.test(keyValue))
+      event.preventDefault();
+  };
+
   return (
     <>
       <div className={classes.info}>
@@ -46,7 +54,7 @@ function ProductCard({ product, barCode }: cardProps) {
       </div>
       <div className={styles.card}>
         <div className={styles.first}>
-          <div className={styles["img-container"]}>
+          <div className={classes["img-container"]}>
             <p>{product.name}</p>
             <img
               onError={({ currentTarget }) => {
@@ -55,6 +63,23 @@ function ProductCard({ product, barCode }: cardProps) {
               }}
               src={product.img}
               alt=""
+            />
+            <label htmlFor="url">
+              Input new image link{" "}
+              <img src={edit} className={classes["edit-icon"]} alt="" />
+            </label>
+            <input
+              className={classes.url}
+              type="text"
+              id="url"
+              onChange={(e) => {
+                setEditedProduct({
+                  ...editedProduct,
+                  img: e.target.value,
+                });
+              }}
+              defaultValue={product.img}
+              placeholder="url..."
             />
           </div>
         </div>
@@ -103,6 +128,9 @@ function ProductCard({ product, barCode }: cardProps) {
             <img className={styles.icon} src={weight} alt="" />
             Weight:
             <input
+              onKeyPress={(e) => checkKeyPress(e)}
+              min="0"
+              step="1"
               id="weight"
               type="number"
               onChange={(e) => {
@@ -151,6 +179,7 @@ function ProductCard({ product, barCode }: cardProps) {
             <input
               id="quantity"
               type="number"
+              onKeyPress={(e) => checkKeyPress(e)}
               onChange={(e) => {
                 setEditedProduct({
                   ...editedProduct,
@@ -176,7 +205,7 @@ function ProductCard({ product, barCode }: cardProps) {
               onChange={(e) => {
                 setEditedProduct({
                   ...editedProduct,
-                  price: Number(e.target.value),
+                  price: Number(Number(e.target.value).toFixed(2)),
                 });
               }}
               style={{
@@ -194,6 +223,7 @@ function ProductCard({ product, barCode }: cardProps) {
             <input
               type="text"
               id="ean"
+              onKeyPress={(e) => checkKeyPress(e)}
               onChange={(e) => {
                 setEditedProduct({
                   ...editedProduct,
@@ -215,7 +245,22 @@ function ProductCard({ product, barCode }: cardProps) {
           </p>
         </div>
       </div>
-      <button className={classes.save}>Save changes</button>
+      <button
+        className={classes.button}
+        onClick={(e) => {
+          e.preventDefault();
+          setProducts((prevState) => {
+            const stateWithout = prevState.filter(
+              (product) => product.id !== editedProduct.id
+            );
+            return [...stateWithout, editedProduct];
+          });
+
+          alert("Product updated");
+        }}
+      >
+        Save changes
+      </button>
     </>
   );
 }

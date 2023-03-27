@@ -86,7 +86,7 @@ function Stats() {
             </div>
             Last change:
             {price - lastPrice >= 0 ? " +$" : " -$"}
-            {Math.abs(price - lastPrice)}
+            {Math.abs(price - lastPrice).toFixed(2)}
             <br />
           </p>
         </div>
@@ -115,7 +115,7 @@ function Stats() {
             </div>
             Last change:
             {weight - lastWeight >= 0 ? " +" : " -"}
-            {Math.abs(weight - lastWeight) / 1000}kg
+            {(Math.abs(weight - lastWeight) / 1000).toFixed(2)}kg
             <br />
           </p>
         </div>

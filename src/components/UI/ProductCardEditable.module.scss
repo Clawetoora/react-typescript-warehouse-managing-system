@@ -1,11 +1,3 @@
-.save {
-  margin-top: 1rem;
-  align-self: center;
-  padding: 1rem 2rem;
-  width: 200px;
-  margin-bottom: 2rem;
-}
-
 .info {
   align-self: center;
   display: flex;
@@ -66,4 +58,54 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 50px;
+    letter-spacing: 10px;
+    color: transparent;
+    text-shadow: 0 0 8px #ffffff5e;
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
+}
+
+.url {
+  background-color: rgb(10, 9, 9);
+  padding: 5px 10px;
+}
+
+.button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(32, 87, 100);
+  padding: 10px 20px;
+  transition: all 0.3s;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  border-radius: 5px;
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(57, 121, 136);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  }
 }
