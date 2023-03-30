@@ -26,7 +26,11 @@ export default function MainTable() {
           <thead>
             <tr>
               {Object.keys(products[0]).map((key, index) =>
-                key === "id" || key === "active" || key === "img" ? (
+                key === "id" ||
+                key === "active" ||
+                key === "img" ||
+                key === "quantityHistory" ||
+                key === "priceHistory" ? (
                   ""
                 ) : (
                   <th key={index}>

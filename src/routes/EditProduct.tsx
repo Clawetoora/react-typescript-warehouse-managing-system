@@ -15,6 +15,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
+  quantityHistory: [];
+  priceHistory: [];
 }
 
 export default function EditProduct() {

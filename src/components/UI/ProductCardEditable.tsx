@@ -19,6 +19,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
+  quantityHistory: number[];
+  priceHistory: number[];
 }
 interface cardProps {
   product: Product;
@@ -37,8 +39,13 @@ function ProductCard({ product, barCode, setProducts }: cardProps) {
     quantity: product.quantity,
     price: product.price,
     img: product.img,
+    quantityHistory: product.quantityHistory,
+    priceHistory: product.priceHistory,
   });
 
+  //
+  //  a check for number imput to prevent any special characters input
+  //
   const checkKeyPress = (event: any) => {
     const keyCode = event.keyCode || event.which;
     const keyValue = String.fromCharCode(keyCode);
@@ -249,6 +256,20 @@ function ProductCard({ product, barCode, setProducts }: cardProps) {
         className={classes.button}
         onClick={(e) => {
           e.preventDefault();
+
+          // checking if there was a change made in price or quantity, if it was the last price and quantity will be added to end of coresponding history array
+          if (
+            editedProduct.quantity !== product.quantity
+            // editedProduct.quantityHistory[
+            //   editedProduct.quantityHistory.length - 1
+            // ]
+          ) {
+            editedProduct.quantityHistory.push(product.quantity);
+          }
+          if (editedProduct.price !== product.price) {
+            editedProduct.priceHistory.push(product.price);
+          }
+          // Setting new products array with filtering out the old product, to avoid duplications of products.
           setProducts((prevState) => {
             const stateWithout = prevState.filter(
               (product) => product.id !== editedProduct.id

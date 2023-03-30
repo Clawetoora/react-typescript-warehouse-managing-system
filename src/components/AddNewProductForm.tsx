@@ -13,6 +13,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
+  quantityHistory: [];
+  priceHistory: [];
 }
 
 interface ProductsProps {
@@ -37,6 +39,8 @@ export default function AddNewProductForm({
     quantity: 0,
     price: 0,
     img: "",
+    quantityHistory: [],
+    priceHistory: [],
   });
 
   useEffect(() => {
