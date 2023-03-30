@@ -19,8 +19,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
-  quantityHistory: number[];
-  priceHistory: number[];
+  quantityHistory: [[number, string]];
+  priceHistory: [[number, string]];
 }
 interface cardProps {
   product: Product;
@@ -256,6 +256,8 @@ function ProductCard({ product, barCode, setProducts }: cardProps) {
         className={classes.button}
         onClick={(e) => {
           e.preventDefault();
+          // Adding a date when the change was made
+          const currentDate = new Date().toLocaleString();
 
           // checking if there was a change made in price or quantity, if it was the last price and quantity will be added to end of coresponding history array
           if (
@@ -264,10 +266,10 @@ function ProductCard({ product, barCode, setProducts }: cardProps) {
             //   editedProduct.quantityHistory.length - 1
             // ]
           ) {
-            editedProduct.quantityHistory.push(product.quantity);
+            editedProduct.quantityHistory.push([product.quantity, currentDate]);
           }
           if (editedProduct.price !== product.price) {
-            editedProduct.priceHistory.push(product.price);
+            editedProduct.priceHistory.push([product.price, currentDate]);
           }
           // Setting new products array with filtering out the old product, to avoid duplications of products.
           setProducts((prevState) => {

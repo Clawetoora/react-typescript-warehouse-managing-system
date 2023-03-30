@@ -70,7 +70,7 @@ function Stats() {
         </h4>
         <p>${price}</p>
         <div className={styles["stats-change"]}>
-          <p
+          <div
             className={`${styles.change} ${
               price - lastPrice >= 0 ? styles.up : styles.down
             }`}
@@ -88,7 +88,7 @@ function Stats() {
             {price - lastPrice >= 0 ? " +$" : " -$"}
             {Math.abs(price - lastPrice).toFixed(2)}
             <br />
-          </p>
+          </div>
         </div>
       </div>
       <div className={styles.stats}>
@@ -99,7 +99,7 @@ function Stats() {
 
         <p>{weight / 1000}kg</p>
         <div className={styles["stats-change"]}>
-          <p
+          <div
             className={`${styles.change} ${
               weight - lastWeight >= 0 ? styles.up : styles.down
             }`}
@@ -117,7 +117,7 @@ function Stats() {
             {weight - lastWeight >= 0 ? " +" : " -"}
             {(Math.abs(weight - lastWeight) / 1000).toFixed(2)}kg
             <br />
-          </p>
+          </div>
         </div>
       </div>
       <div className={styles.stats}>
@@ -128,7 +128,7 @@ function Stats() {
 
         <p>{quantity} items</p>
         <div className={styles["stats-change"]}>
-          <p
+          <div
             className={`${styles.change} ${
               quantity - lastQuantity >= 0 ? styles.up : styles.down
             }`}
@@ -146,7 +146,7 @@ function Stats() {
             {quantity - lastQuantity >= 0 ? " +" : " -"}
             {Math.abs(quantity - lastQuantity)} items
             <br />
-          </p>
+          </div>
         </div>
       </div>
     </div>

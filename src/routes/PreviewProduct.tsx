@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState, CSSProperties } from "react";
 import { ProductsListContext } from "../context/ProductsListContext";
 
 import ProductCard from "../components/UI/ProductCard";
+import ViewNav from "../components/UI/ViewNav";
 
 interface Product {
   id?: number;

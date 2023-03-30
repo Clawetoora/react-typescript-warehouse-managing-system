@@ -13,6 +13,8 @@ interface Product {
   active?: boolean;
   quantity?: number;
   price?: number;
+  quantityHistory: [[number, string]];
+  priceHistory: [[number, string]];
 }
 
 export default function MainTable() {

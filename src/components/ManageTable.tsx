@@ -14,6 +14,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
+  quantityHistory: [[number, string]];
+  priceHistory: [[number, string]];
 }
 
 interface ProductsProps {
