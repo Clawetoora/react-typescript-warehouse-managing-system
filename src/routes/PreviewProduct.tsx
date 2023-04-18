@@ -17,12 +17,19 @@ interface Product {
   quantity?: number;
   price?: number;
   img?: string;
+  quantityHistory: [[number, string]];
+  priceHistory: [[number, string]];
 }
 export default function PreviewProduct() {
   const params = useParams();
   const [products] = useContext(ProductsListContext);
   const [loading, setLoading] = useState(false);
   const [barCode, setBarCode] = useState("");
+  const [selected, setSelected] = useState("product");
+
+  const setTab = (tab: string) => {
+    return setSelected(tab);
+  };
 
   const API_URL = products
     .filter((product: Product) => product.id === Number(params.id))
@@ -50,6 +57,7 @@ export default function PreviewProduct() {
 
   return (
     <>
+      <ViewNav selected={selected} setTab={setTab} />
       {loading ? (
         <PuffLoader
           color={"white"}
@@ -64,11 +72,19 @@ export default function PreviewProduct() {
           .filter((product: Product) => product.id === Number(params.id))
           .map((product: Product) => {
             return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                barCode={barCode}
-              />
+              <React.Fragment key={product.id}>
+                {selected === "product" && (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    barCode={barCode}
+                  />
+                )}
+                {selected === "price" && <div>{product.priceHistory}</div>}
+                {selected === "quantity" && (
+                  <div>{product.quantityHistory}</div>
+                )}
+              </React.Fragment>
             );
           })
       )}
