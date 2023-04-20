@@ -19,8 +19,8 @@ interface Product {
   quantity: number;
   price: number;
   img: string;
-  quantityHistory: [[number, string]];
-  priceHistory: [[number, string]];
+  quantityHistory: [{}];
+  priceHistory: [{}];
 }
 interface cardProps {
   product: Product;
@@ -266,10 +266,18 @@ function ProductCard({ product, barCode, setProducts }: cardProps) {
             //   editedProduct.quantityHistory.length - 1
             // ]
           ) {
-            editedProduct.quantityHistory.push([product.quantity, currentDate]);
+            const productQuantity = product.quantity;
+            editedProduct.quantityHistory.push({
+              quantity: productQuantity,
+              date: currentDate,
+            });
           }
           if (editedProduct.price !== product.price) {
-            editedProduct.priceHistory.push([product.price, currentDate]);
+            const productPrice = product.price;
+            editedProduct.priceHistory.push({
+              price: productPrice,
+              date: currentDate,
+            });
           }
           // Setting new products array with filtering out the old product, to avoid duplications of products.
           setProducts((prevState) => {

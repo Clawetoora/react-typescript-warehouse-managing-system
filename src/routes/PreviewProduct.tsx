@@ -5,6 +5,8 @@ import { ProductsListContext } from "../context/ProductsListContext";
 
 import ProductCard from "../components/UI/ProductCard";
 import ViewNav from "../components/UI/ViewNav";
+import PriceHistoryCard from "../components/UI/PriceHistoryCard";
+import QuantityHistoryCard from "../components/UI/QuantityHistoryCard";
 
 interface Product {
   id?: number;
@@ -17,8 +19,8 @@ interface Product {
   quantity?: number;
   price?: number;
   img?: string;
-  quantityHistory: [[number, string]];
-  priceHistory: [[number, string]];
+  quantityHistory: [{}];
+  priceHistory: [{}];
 }
 export default function PreviewProduct() {
   const params = useParams();
@@ -80,9 +82,17 @@ export default function PreviewProduct() {
                     barCode={barCode}
                   />
                 )}
-                {selected === "price" && <div>{product.priceHistory}</div>}
+                {selected === "price" && (
+                  <PriceHistoryCard
+                    priceHistory={product.priceHistory}
+                    currentPrice={product.price}
+                  />
+                )}
                 {selected === "quantity" && (
-                  <div>{product.quantityHistory}</div>
+                  <QuantityHistoryCard
+                    quantityHistory={product.quantityHistory}
+                    currentQuantity={product.quantity}
+                  />
                 )}
               </React.Fragment>
             );
