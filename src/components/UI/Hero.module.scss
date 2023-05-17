@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   width: 100%;
-  height: 500px;
   overflow: hidden;
   border-radius: 10px;
 
@@ -31,5 +30,24 @@
     object-fit: cover;
     max-width: 100%;
     height: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    &-aside {
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    h1,
+    h5 {
+      text-align: center;
+      color: white;
+    }
+  }
+  .heroImg {
+    display: none;
   }
 }

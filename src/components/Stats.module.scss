@@ -75,3 +75,12 @@
     transform: translateY(4px);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .stats {
+    flex-direction: column;
+    .stats-change {
+      margin-left: 0 !important;
+    }
+  }
+}

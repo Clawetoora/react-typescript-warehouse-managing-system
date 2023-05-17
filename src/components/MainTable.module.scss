@@ -43,3 +43,11 @@
     height: 20px;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    h2 {
+      text-align: center;
+    }
+  }
+}
